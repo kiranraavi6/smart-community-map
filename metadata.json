@@ -1,0 +1,6 @@
+{
+  "name": "Community Asset Map",
+  "description": "Discover Resources. Connect Communities. Create Impact. Real-time civic resource mapping, verification, and discovery platform.",
+  "requestFramePermissions": ["geolocation"],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

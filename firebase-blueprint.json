@@ -1,0 +1,138 @@
+{
+  "entities": {
+    "users": {
+      "title": "User Profiles",
+      "description": "User accounts, roles, and profiles",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string" },
+        "displayName": { "type": "string" },
+        "email": { "type": "string" },
+        "photoURL": { "type": "string" },
+        "role": { "type": "string", "enum": ["guest", "member", "verified_contributor", "moderator", "admin"] },
+        "accountStatus": { "type": "string", "enum": ["active", "suspended"] },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["uid", "email", "role"]
+    },
+    "assets": {
+      "title": "Community Assets",
+      "description": "Mapped public facilities, utilities, healthcare, schools, water points, etc.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "normalizedName": { "type": "string" },
+        "categoryId": { "type": "string" },
+        "description": { "type": "string" },
+        "address": { "type": "string" },
+        "landmark": { "type": "string" },
+        "city": { "type": "string" },
+        "state": { "type": "string" },
+        "postalCode": { "type": "string" },
+        "latitude": { "type": "number" },
+        "longitude": { "type": "number" },
+        "geohash": { "type": "string" },
+        "contactNumber": { "type": "string" },
+        "website": { "type": "string" },
+        "operatingHours": { "type": "string" },
+        "accessibility": { "type": "array", "items": { "type": "string" } },
+        "facilities": { "type": "array", "items": { "type": "string" } },
+        "imageUrls": { "type": "array", "items": { "type": "string" } },
+        "submittedBy": { "type": "string" },
+        "submittedByName": { "type": "string" },
+        "verificationStatus": { "type": "string", "enum": ["pending", "under_review", "verified", "rejected", "needs_correction", "archived"] },
+        "verificationNotes": { "type": "string" },
+        "verifiedAt": { "type": "string" },
+        "verifiedBy": { "type": "string" },
+        "createdAt": { "type": "string" },
+        "updatedAt": { "type": "string" }
+      },
+      "required": ["name", "categoryId", "latitude", "longitude", "verificationStatus"]
+    },
+    "communityNeeds": {
+      "title": "Community Needs & Resource Gaps",
+      "description": "Reported missing or required community resources",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "title": { "type": "string" },
+        "categoryId": { "type": "string" },
+        "description": { "type": "string" },
+        "latitude": { "type": "number" },
+        "longitude": { "type": "number" },
+        "locality": { "type": "string" },
+        "submittedBy": { "type": "string" },
+        "submittedByName": { "type": "string" },
+        "status": { "type": "string", "enum": ["submitted", "under_review", "acknowledged", "in_progress", "addressed", "closed"] },
+        "upvotes": { "type": "number" },
+        "createdAt": { "type": "string" },
+        "updatedAt": { "type": "string" }
+      },
+      "required": ["title", "categoryId", "latitude", "longitude", "status"]
+    },
+    "reports": {
+      "title": "Asset Inaccuracy Reports",
+      "description": "Citizen reports of inaccuracies, closures, or issues with an asset",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "assetId": { "type": "string" },
+        "assetName": { "type": "string" },
+        "reportedBy": { "type": "string" },
+        "reportedByName": { "type": "string" },
+        "reason": { "type": "string" },
+        "description": { "type": "string" },
+        "status": { "type": "string", "enum": ["pending", "resolved", "dismissed"] },
+        "resolutionNotes": { "type": "string" },
+        "createdAt": { "type": "string" },
+        "resolvedAt": { "type": "string" }
+      },
+      "required": ["assetId", "reason", "status"]
+    },
+    "favorites": {
+      "title": "User Favorites",
+      "description": "User saved/bookmarked community assets",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "assetId": { "type": "string" },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["userId", "assetId"]
+    },
+    "notifications": {
+      "title": "In-app Notifications",
+      "description": "Alerts regarding submission approval, moderation, updates",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "userId": { "type": "string" },
+        "type": { "type": "string" },
+        "title": { "type": "string" },
+        "message": { "type": "string" },
+        "relatedEntityId": { "type": "string" },
+        "readAt": { "type": "string" },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["userId", "title", "message"]
+    },
+    "moderationLogs": {
+      "title": "Audit / Moderation Logs",
+      "description": "Administrative actions log for security and compliance",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "moderatorId": { "type": "string" },
+        "moderatorName": { "type": "string" },
+        "action": { "type": "string" },
+        "entityType": { "type": "string" },
+        "entityId": { "type": "string" },
+        "reason": { "type": "string" },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["moderatorId", "action", "entityType", "entityId"]
+    }
+  }
+}
